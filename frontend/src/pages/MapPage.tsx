@@ -5,7 +5,7 @@ import type { CircleLayer } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { BARS, MAP_CENTER } from '../data/bars';
 
-const token = import.meta.env.VITE_MAPBOX_TOKEN;
+const token = import.meta.env.VITE_MAPBOX_TOKEN as string | undefined;
 
 // Mock: current bar (null = not at a bar)
 const MOCK_CURRENT_BAR = 'Study Hall'; // or null
@@ -67,10 +67,12 @@ export default function MapPage() {
     };
   }, []);
 
-  if (!token) {
+  if (!token || token === '') {
     return (
       <div className="map-placeholder">
-        <p>Add VITE_MAPBOX_TOKEN to .env to enable the map.</p>
+        <p><strong>Map token missing</strong></p>
+        <p>Local: Add VITE_MAPBOX_TOKEN to frontend/.env</p>
+        <p>Vercel: Add VITE_MAPBOX_TOKEN in Project Settings → Environment Variables, then redeploy.</p>
       </div>
     );
   }
@@ -100,7 +102,7 @@ export default function MapPage() {
         <p>See where your friends are.</p>
       </div>
 
-      <div className="map-container">
+      <div className="map-container" style={{ minHeight: 280 }}>
       <Map
         mapboxAccessToken={token}
         initialViewState={{
@@ -109,7 +111,7 @@ export default function MapPage() {
           zoom: 17,
         }}
         mapStyle="mapbox://styles/mapbox/dark-v11"
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', minHeight: 280 }}
       >
         <Source id="bars" type="geojson" data={barGeoJSON}>
           <Layer {...barLayerStyle} />
