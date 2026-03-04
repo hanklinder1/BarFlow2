@@ -1,0 +1,304 @@
+/* BarFlow - Dark theme with orange accents */
+:root {
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #262626;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a3a3a3;
+  --text-muted: #737373;
+  --accent-orange: #f97316;
+  --accent-orange-hover: #ea580c;
+  --accent-orange-muted: rgba(249, 115, 22, 0.2);
+  --border-color: #333;
+  --safe-area-bottom: env(safe-area-inset-bottom, 0);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Layout - Mobile-first */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: calc(64px + var(--safe-area-bottom));
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+  letter-spacing: -0.02em;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Bottom navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 0;
+  padding-bottom: calc(8px + var(--safe-area-bottom));
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  z-index: 10;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 20px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-item:hover {
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  color: var(--accent-orange);
+}
+
+.nav-icon {
+  font-size: 1.25rem;
+}
+
+.nav-label {
+  line-height: 1;
+}
+
+/* Map page */
+.map-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.location-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.location-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.location-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.location-dot[data-active="true"] {
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.location-bar {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.location-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.settings-btn {
+  padding: 8px 14px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.settings-btn:hover {
+  color: var(--accent-orange);
+  border-color: var(--accent-orange);
+}
+
+.map-heading {
+  padding: 12px 16px 0;
+  flex-shrink: 0;
+}
+
+.map-heading h2 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+}
+
+.map-heading p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.map-container {
+  flex: 1;
+  min-height: 200px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 12px 16px;
+}
+
+.friends-out {
+  flex-shrink: 0;
+  padding: 16px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.friends-out-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.friends-out-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.manage-link {
+  font-size: 13px;
+  color: var(--accent-orange);
+  text-decoration: none;
+}
+
+.manage-link:hover {
+  text-decoration: underline;
+}
+
+.friends-out-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.friend-out-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--bg-tertiary);
+  border-radius: 10px;
+}
+
+.friend-username {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.friend-at {
+  margin-left: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.friend-bar {
+  flex: 1;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.msg-btn {
+  padding: 6px 12px;
+  background: var(--accent-orange);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.map-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* Placeholder page content */
+.page-content {
+  padding: 16px;
+}
+
+.page-content h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.text-muted {
+  color: var(--text-secondary);
+  margin: 0;
+}

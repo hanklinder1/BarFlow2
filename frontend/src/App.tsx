@@ -1,12 +1,19 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import MapPage from './pages/MapPage';
+import { FriendsPage } from './pages/FriendsPage';
+import { ProfilePage } from './pages/ProfilePage';
 
 function App() {
   return (
     <BrowserRouter>
-      <div style={{ padding: 20, fontFamily: 'system-ui' }}>
-        <h1>BarFlow</h1>
-        <p>Connections configured. Ready to build.</p>
-      </div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<MapPage />} />
+          <Route path="friends" element={<FriendsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
